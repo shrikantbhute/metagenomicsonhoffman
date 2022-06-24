@@ -22,3 +22,15 @@ Something that's extremely computationally intensive, we freeloaders can even re
 ```bash 
 qrsh -l h_rt=24:00:00, exclusive 
 ```
+---
+## Setting up the Environment for Metagenomics
+
+Can see what modules are available via 
+```bash
+all_apps_via_modules
+```
+We will likely only need anaconda. However, every time you need anaconda, need to rerun module load.
+```bash
+module load anaconda3
+```
+Now, can follow instructions on Huttenhower Lab to download humann and metaphlann. Reposted below for convenience, from https://huttenhower.sph.harvard.edu/humann.

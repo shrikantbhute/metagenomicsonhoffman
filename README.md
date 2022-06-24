@@ -34,3 +34,22 @@ We will likely only need anaconda. However, every time you need anaconda, need t
 module load anaconda3
 ```
 Now, can follow instructions on Huttenhower Lab to download humann and metaphlann. Reposted below for convenience, from https://huttenhower.sph.harvard.edu/humann.
+
+It's good practice to create a new environment for different pipelines, then install new packages for use within the pipeline after activating the environment.
+
+```bash
+conda create --name biobakery3 python=3.7
+conda activate biobakery3
+```
+```bash
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+conda config --add channels biobakery
+```
+Install HUMAnN 3.0 software with demo databases and Metaphlann 3.0:
+
+```bash
+    conda install humann -c biobakery
+```
+

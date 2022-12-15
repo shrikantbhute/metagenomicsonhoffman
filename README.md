@@ -24,6 +24,15 @@ qrsh -l h_rt=24:00:00, exclusive
 ```
 ---
 ## Setting up the Environment for Metagenomics
+Work in SCRATCH, because there is 2TB available per user (working in $HOME, there is only 40GB available). However, files in $SCRATCH are deleted after 14 days. Files in $HOME live forever. 
+```bash
+cd $SCRATCH
+``` 
+From your local computer command line, transfer the folder containing raw FASTQ to your $SCRATCH dir via `scp`. 
+
+```bash 
+C:\Users\Jacobs Laboratory\Documents\JCYang\Shotgun_colon_cancer>scp -r Shotgun_colon_cancer julianne@hoffman2.idre.ucla.edu:/u/scratch/j/julianne 
+```
 
 Can see what modules are available via 
 ```bash

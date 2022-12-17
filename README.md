@@ -95,10 +95,14 @@ watch -n5 ls metaphlan_database/ -1lh
 ```
 Write a script to run metaphlan based on pairs of samples, but submit a job for each sample. Script swarm_metaplan.sh has the following contents, based on NIH notes: https://hpc.nih.gov/apps/metaphlan.html
 
+This script is `run_metaphlan.sh`.
+
 For a single pair of samples:
 ```bash
 metaphlan CC42E_S279_L001_R1_001.fastq.gz,CC42E_S279_L001_R2_001.fastq.gz --bowtie2out metagenome.bowtie2.bz2 --nproc 4 --input_type fastq -o profiled_metagenome.txt --bowtie2db metaphlan_database --index mpa_vJan21_CHOCOPhlAnSGB_202103 
 ```
+To submit a job for each pair of samples:
 ```bash
-for f in *R1_001.fastq.gz; do name=$(basename $f R1_001.fastq.gz); echo ${name}; done
+(biobakery3) [julianne@n1866 test_run]$ for f in *R1_001.fastq.gz; do name=$(basename $f R1_001.fastq.gz); qsub run_metaphlan.sh ${name}_L001_R1.fastq.gz ${name}_L002_R2.fastq.gz; done
 ```
+

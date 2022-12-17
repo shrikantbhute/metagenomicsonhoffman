@@ -81,16 +81,17 @@ metaphlan CC42E_S279_L001_R1_001.fastq.gz, CC42E_S279_L001_R2_001.fastq.gz --bow
 ```
 
 If you receive the error "Command ‘[‘bowtie2-build’, ‘–usage’]’ returned non-zero exit status"
-you will need to install bowtie2 separately. Clone this repo. Submit the job to the HPC with the shell script `install_bowtie.sh`:
+you will need to install bowtie2 separately. Clone this repo. Submit the job to the HPC with the shell script `install_bowtie.sh`. This will need to run for about 3 hours.
 
 ```bash
 qsub install_bowtie.sh
 ```
 
-Check whether or not the job is running with the below command. Note state "r" means running, and "qw" is pending. if you don't see the job there, it has failed immediately and you will need to evaluate the error message by opening the joblog. Replace `julianne` with your own username.
+Check whether or not the job is running with the below command. Note state "r" means running, and "qw" is pending. if you don't see the job there, it has failed immediately and you will need to evaluate the error message by opening the joblog. Replace `julianne` with your own username. You can also watch the outputs folder update in realtime, by running `watch` on the output folder (mine is called `metaphlan_database`
 
 ```bash
 qstat -u julianne
+watch -n5 ls metaphlan_database/ -1lh
 ```
 Write a script to run metaphlan based on pairs of samples, but submit a job for each sample. Script swarm_metaplan.sh has the following contents, based on NIH notes: https://hpc.nih.gov/apps/metaphlan.html
 

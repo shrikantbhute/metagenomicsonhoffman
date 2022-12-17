@@ -28,6 +28,10 @@ Work in SCRATCH, because there is 2TB available per user (working in $HOME, ther
 ```bash
 cd $SCRATCH
 ``` 
+To check how much storage you have left in $HOME: 
+```bash
+myquota
+```
 From your local computer command line, transfer the folder containing raw FASTQ to your $SCRATCH dir via `scp`. 
 
 ```bash 
@@ -56,9 +60,38 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 conda config --add channels biobakery
 ```
-Install HUMAnN 3.0 software with demo databases and Metaphlann 3.0:
+Install HUMAnN 3.0 software with demo databases and Metaphlan 3.0. Also update all humann databases. Note path/to/database should be replaced with the directory to which you want to download databases.
 
 ```bash
     conda install humann -c biobakery
+    humann_databases --download chocophlan full /path/to/databases --update-config yes
+    humann_databases --download uniref uniref90_diamond /path/to/databases --update-config yes
+    humann_databases --download utility_mapping full /path/to/databases --update-config yes
 ```
+
+Update Metaphlan 3.0 to Metaphlan 4.0 (continue within the biobakery3 environment)
+```bash
+   conda install -c bioconda metaphlan
+   metaphlan --version
+```
+
+Run Metaphlan for one "paired- end sample"
+```bash
+metaphlan CC42E_S279_L001_R1_001.fastq.gz, CC42E_S279_L001_R2_001.fastq.gz --bowtie2out metagenome.bowtie2.bz2 --nproc 5 --input_type fastq -o profiled_metagenome.txt
+```
+
+If you receive the error "Command ‘[‘bowtie2-build’, ‘–usage’]’ returned non-zero exit status"
+you will need to install bowtie2 separately. Clone this repo. Submit the job to the HPC with the shell script `install_bowtie.sh`:
+
+```bash
+qsub install_bowtie.sh
+```
+
+Check whether or not the job is running with the below command. Note state "r" means running, and "qw" is pending. if you don't see the job there, it has failed immediately and you will need to evaluate the error message by opening the joblog. Replace `julianne` with your own username.
+
+```bash
+qstat -u julianne
+```
+
+
 

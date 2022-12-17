@@ -95,5 +95,5 @@ qstat -u julianne
 Write a script to run metaphlan based on pairs of samples, but submit a job for each sample. Script swarm_metaplan.sh has the following contents, based on NIH notes: https://hpc.nih.gov/apps/metaphlan.html
 
 ```bash
-for f in *; do name=$(basename $f _R1_001.fastq.gz); name2=$(basename $f _R2_001.fastq.gz); mkdir ${name}${name2}_delete; done
+for f in *R1_001.fastq.gz; do name=$(basename $f R1_001.fastq.gz); echo ${name}; done
 ```

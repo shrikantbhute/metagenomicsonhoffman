@@ -95,7 +95,7 @@ watch -n5 ls metaphlan_database/ -1lh
 ```
 Write a script to run metaphlan based on pairs of samples, but submit a job for each sample. Script swarm_metaplan.sh has the following contents, based on NIH notes: https://hpc.nih.gov/apps/metaphlan.html
 
-This script is `run_metaphlan.sh`.
+This script for paired-end samples is `run_metaphlan.sh`. For single samples, it is `run_metaphlan_single.sh`.
 
 For a single pair of samples:
 ```bash

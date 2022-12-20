@@ -103,7 +103,8 @@ metaphlan CC42E_S279_L001_R1_001.fastq.gz,CC42E_S279_L001_R2_001.fastq.gz --bowt
 ```
 To submit a job for each pair of samples:
 ```bash
-(biobakery3) [julianne@n1866 test_run]$ for f in *R1_001.fastq.gz; do name=$(basename $f R1_001.fastq.gz); qsub run_metaphlan.sh ${name}L001_R1.fastq.gz ${name}L002_R2.fastq.gz; done
+(biobakery3) [julianne@n1866 test_run]$ for f in *R1_001.fastq.gz; do name=$(basename $f R1_001.fastq.gz); qsub run_metaphlan.sh ${name}R1_001.fastq.gz ${name}R2_001.fastq.gz; done
+
 
 ```
 

@@ -118,3 +118,7 @@ export PATH=$PATH:/u/scratch/j/julianne/bin
 echo $PATH
 ```
 
+Run for a single pair of samples: 
+```bash
+qsub run_kneaddata.sh CC42E_S279_L001_R1_001.fastq.gz CC42E_S279_L001_R2_001.fastq.gz  
+```

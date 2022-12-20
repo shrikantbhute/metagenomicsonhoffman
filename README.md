@@ -107,4 +107,14 @@ To submit a job for each pair of samples:
 
 
 ```
+--------------------------------------
+## Installing and running KneadData 
+
+If the $HOME directory is full, download to SCRATCH. however, you will need to modify $PATH everytime you reestablish a new connection via ssh or you can permanently change $PATH via direct modification of a .rc file `.bashrc` if you're using bash. 
+```bash
+pip install kneaddata -target /u/scratch/j/julianne
+echo $PATH
+export PATH=$PATH:/u/scratch/j/julianne/bin 
+echo $PATH
+```
 

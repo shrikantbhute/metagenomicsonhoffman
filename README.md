@@ -163,6 +163,12 @@ You will merely need to locate the filepath to trimmomatic, which is somewhere i
 ```bash
 /u/home/j/julianne/.conda/pkgs/trimmomatic-0.39-hdfd78af_2/share/trimmomatic-0.39-2/
 ```
+
+Now, install the reference genomes that you will need for kneaddata (below is just for human genome):
+```bash
+mkdir kneaddata_databases
+kneaddata_database --download human_genome bowtie2 kneaddata_databases
+```
 Run in an interactive session for a single pair of samples:
 ```bash
 kneaddata --input1 CC42E_S279_L001_R1_001.fastq.gz --input2 CC42E_S279_L001_R2_001.fastq.gz --reference-db /u/scratch/j/julianne/kneaddata_databases --output CC42E_test_kneaddata --trimmomatic /u/home/j/julianne/.conda/pkgs/trimmomatic-0.39-hdfd78af_2/share/trimmomatic-0.39-2/

@@ -163,4 +163,8 @@ Run for a single pair of samples:
 qsub run_kneaddata.sh CC42E_S279_L001_R1_001.fastq.gz CC42E_S279_L001_R2_001.fastq.gz  
 ```
 
+Run iteratively for many pairs of samples:
+```bash
+(kneaddata) -bash-4.2$ for f in *R1_001.fastq.gz; do name=$(basename $f R1_001.fastq.gz); qsub run_kneaddata.sh ${name}R1_001.fastq.gz ${name}R2_001.fastq.gz; done  
+```
 

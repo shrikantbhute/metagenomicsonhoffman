@@ -122,6 +122,7 @@ To submit a job for each pair of samples:
 (biobakery3) [julianne@n1866 test_run]$ for f in *R1_001.fastq.gz; do name=$(basename $f R1_001.fastq.gz); qsub run_metaphlan.sh ${name}R1_001.fastq.gz ${name}R2_001.fastq.gz; done
 
 ```
+
 --------------------------------------
 ## Installing and running KneadData 
 
@@ -177,6 +178,10 @@ Run iteratively for many pairs of samples:
 (kneaddata) -bash-4.2$ for f in *R1_001.fastq.gz; do name=$(basename $f R1_001.fastq.gz); qsub run_kneaddata.sh ${name}R1_001.fastq.gz ${name}R2_001.fastq.gz; done  
 ```
 
+Move all kneaddata outputs to a new folders and remove all the intermediate files to save space:
+```bash
+mv *kneaddata* kneaddata_outputs
+find . -type f -not -name '*data_paired_*' -print0 | xargs -0 -I {} rm -v {}
 ---
 ## Running Humann
 Update to Metaphlan 4.0 if not already running 4.0 (check with `--version` parameter). This newer version should prevent getting the error "Warning: Unable to download https://www.dropbox.com/sh/7qze7m7g9fe2xjg/AAA4XDP85WHon_eHvztxkamTa/file_list.txt?dl=1. UnboundLocalError: local variable 'ls_f' referenced before assignment" and having to resort to finding workaround ways to download the file.

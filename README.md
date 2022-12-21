@@ -177,3 +177,9 @@ Run iteratively for many pairs of samples:
 (kneaddata) -bash-4.2$ for f in *R1_001.fastq.gz; do name=$(basename $f R1_001.fastq.gz); qsub run_kneaddata.sh ${name}R1_001.fastq.gz ${name}R2_001.fastq.gz; done  
 ```
 
+---
+## Running Humann
+Update to metaphlan 4.0
+```bash
+conda install -c bioconda metaphlan=4.0.0
+```

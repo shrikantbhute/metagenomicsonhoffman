@@ -121,7 +121,14 @@ To submit a job for each pair of samples:
 --------------------------------------
 ## Installing and running KneadData 
 
-By default, conda installs to the $HOME directory. 
+
+Anecdotally, I found that installation of package dependencies of kneaddata had a lot of issues, so I think it is safer to create a new environment separate from biobakery3 purely for kneaddata. 
+```bash 
+conda env create -f kneaddata
+conda activate kneaddata
+```
+
+By default, installations are made in the $HOME directory. 
 If the $HOME directory is full, download to SCRATCH. however, you will need to modify $PATH everytime you reestablish a new connection via ssh or you can permanently change $PATH via direct modification of a config file `.bash_profile` if you're using bash. if you're submitting job via `qsub` (versus running interactively) you probably want to modify `.bash_profile`, `.bashrc`, and `.condarc`.
 
 ```bash
@@ -130,8 +137,30 @@ echo $PATH
 export PATH=$PATH:/u/scratch/j/julianne/bin 
 echo $PATH
 ```
+Once you do that, you can check whether kneaddata has been installed properly by seeing whether `kneaddata` is a recognized command. 
+
+Here are some errors you may receive:
+- "Invalid or corrupt jar file" for Trimmomatic: 
+![image](https://user-images.githubusercontent.com/62775127/208792025-9abd2d53-ea6a-4d36-a828-930021fc3c61.png)
+Follow this solution (I got this from another user, https://forum.biobakery.org/t/kneaddata-installed-with-conda-is-not-available/4147)
+```bash
+cd ~/.conda/envs/kneaddata/lib/python3.10/site-packages/kneaddata/
+nano config.py 
+```
+- "Unable to find trimmomatic. Please provide the full path"
+![image](https://user-images.githubusercontent.com/62775127/208792482-c6febee7-808f-4e1e-acd7-a95654b940e2.png)
+You will merely need to locate the filepath to trimmomatic, which is somewhere in $HOME/.conda/pkgs:
+```bash
+/u/home/j/julianne/.conda/pkgs/trimmomatic-0.39-hdfd78af_2/share/trimmomatic-0.39-2/
+```
+Run in an interactive session for a single pair of samples:
+```bash
+kneaddata --input1 CC42E_S279_L001_R1_001.fastq.gz --input2 CC42E_S279_L001_R2_001.fastq.gz --reference-db /u/scratch/j/julianne/kneaddata_databases --output CC42E_test_kneaddata --trimmomatic /u/home/j/julianne/.conda/pkgs/trimmomatic-0.39-hdfd78af_2/share/trimmomatic-0.39-2/
+```
 
 Run for a single pair of samples: 
 ```bash
 qsub run_kneaddata.sh CC42E_S279_L001_R1_001.fastq.gz CC42E_S279_L001_R2_001.fastq.gz  
 ```
+
+

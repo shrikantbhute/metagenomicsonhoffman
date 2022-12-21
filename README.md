@@ -40,6 +40,10 @@ To check how much storage you have left in $HOME:
 ```bash
 myquota
 ```
+To delete all jobs in queue:
+```bash
+qdel -u julianne
+```
 ---
 ## Setting up the Environment for Metaphlann4 and Humann
 

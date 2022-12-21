@@ -128,8 +128,13 @@ conda env create -f kneaddata
 conda activate kneaddata
 ```
 
-By default, installations are made in the $HOME directory. 
-If the $HOME directory is full, download to SCRATCH. however, you will need to modify $PATH everytime you reestablish a new connection via ssh or you can permanently change $PATH via direct modification of a config file `.bash_profile` if you're using bash. if you're submitting job via `qsub` (versus running interactively) you probably want to modify `.bash_profile`, `.bashrc`, and `.condarc`.
+By default, installations are made in the $HOME directory. This is recommended: 
+
+```bash
+pip install kneaddata
+```
+
+Alternatively, if the $HOME directory is full, download to SCRATCH. however, you will need to modify $PATH everytime you reestablish a new connection via ssh or you can permanently change $PATH via direct modification of a config file `.bash_profile` if you're using bash. if you're submitting job via `qsub` (versus running interactively) you probably want to modify `.bash_profile`, `.bashrc`, and `.condarc`.
 
 ```bash
 pip install kneaddata -target /u/scratch/j/julianne

@@ -1,11 +1,19 @@
 # Metagenomics on Hoffman
-Jacobs Lab: Run Humann and Metaphlann on the UCLA supercomputer
+Jacobs Lab: Run Metaphlann4 and Humann on the UCLA Supercomputer Hoffman2. 
+
+This is applicable to anyone trying to scale metagenomic data preprocessing for many samples on a supercomputer. 
+At UCLA, our HPC job scheduling system is the Univa Grid Engine, derived from Sun Grid Engine. Therefore, these commands carry over to other UGE job scheduling systems. 
+
+
+---
+## Basic supercomputer instructions for novices
+This section is merely a quickstart guide and is not intended to be comprehensive.
 
 Connect to Hoffman Cluster
 ```bash
 ssh julianne@hoffman2.idre.ucla.edu
 ```
-You are now connected to the login node. Now, you can open an interactive session via qrsh. Freeloaders (campus users) are limited to jobs or interactive jobs that run for maximum of 24 hours. However, we can expand computational resources via appending the parameters to qrsh (interactive) or qsh (batch job) and also run command by command rather than large workflows.
+You are now connected to the login node. Now, you can open an interactive session via qrsh. *You must always run commands from a `qrsh` session to avoid consuming resources at the login node or you can be banned.* Freeloaders (campus users) are limited to jobs or interactive jobs that run for maximum of 24 hours. However, we can expand computational resources via appending the parameters to qrsh (interactive) or qsh (batch job) and also run command by command rather than large workflows.
 
 ```bash
 qrsh -l h rt=2:00:00, h_data=20G
@@ -22,16 +30,19 @@ Something that's extremely computationally intensive, we freeloaders can even re
 ```bash 
 qrsh -l h_rt=24:00:00, exclusive 
 ```
----
-## Setting up the Environment for Metagenomics
-Work in SCRATCH, because there is 2TB available per user (working in $HOME, there is only 40GB available). However, files in $SCRATCH are deleted after 14 days. Files in $HOME live forever. 
+
+Work in $SCRATCH, because there is 2TB available per user (working in $HOME, there is only 40GB available). However, files in $SCRATCH are deleted after 14 days. Files in $HOME live forever. `pwd` views absolute filepath of $SCRATCH.
 ```bash
 cd $SCRATCH
-``` 
+pwd
+```
 To check how much storage you have left in $HOME: 
 ```bash
 myquota
 ```
+---
+## Setting up the Environment for Metaphlann4 and Humann
+
 From your local computer command line, transfer the folder containing raw FASTQ to your $SCRATCH dir via `scp`. 
 
 ```bash 
@@ -49,6 +60,7 @@ module load anaconda3
 Now, can follow instructions on Huttenhower Lab to download humann and metaphlann. Reposted below for convenience, from https://huttenhower.sph.harvard.edu/humann.
 
 It's good practice to create a new environment for different pipelines, then install new packages for use within the pipeline after activating the environment.
+Here, the environment is called `biobakery3`.
 
 ```bash
 conda create --name biobakery3 python=3.7
@@ -105,12 +117,13 @@ To submit a job for each pair of samples:
 ```bash
 (biobakery3) [julianne@n1866 test_run]$ for f in *R1_001.fastq.gz; do name=$(basename $f R1_001.fastq.gz); qsub run_metaphlan.sh ${name}R1_001.fastq.gz ${name}R2_001.fastq.gz; done
 
-
 ```
 --------------------------------------
 ## Installing and running KneadData 
 
-If the $HOME directory is full, download to SCRATCH. however, you will need to modify $PATH everytime you reestablish a new connection via ssh or you can permanently change $PATH via direct modification of a config file `.bash_profile` if you're using bash. if you're submitting job via `qsub` you probably want to modify `.bash_profile`. 
+By default, conda installs to the $HOME directory. 
+If the $HOME directory is full, download to SCRATCH. however, you will need to modify $PATH everytime you reestablish a new connection via ssh or you can permanently change $PATH via direct modification of a config file `.bash_profile` if you're using bash. if you're submitting job via `qsub` (versus running interactively) you probably want to modify `.bash_profile`, `.bashrc`, and `.condarc`.
+
 ```bash
 pip install kneaddata -target /u/scratch/j/julianne
 echo $PATH

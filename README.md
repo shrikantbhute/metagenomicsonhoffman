@@ -179,7 +179,19 @@ Run iteratively for many pairs of samples:
 
 ---
 ## Running Humann
-Update to metaphlan 4.0
+Update to Metaphlan 4.0 if not already running 4.0 (check with `--version` parameter). This newer version should prevent getting the error "Warning: Unable to download https://www.dropbox.com/sh/7qze7m7g9fe2xjg/AAA4XDP85WHon_eHvztxkamTa/file_list.txt?dl=1. UnboundLocalError: local variable 'ls_f' referenced before assignment" and having to resort to finding workaround ways to download the file.
+
 ```bash
 conda install -c bioconda metaphlan=4.0.0
 ```
+Update to Humann 3.6 (very important- older version of humann are not compatible with metaphlan)
+```bash
+pip install humann --upgrade
+```
+If you receive this warning
+"The scripts humann....are installed in '/u/home/j/julianne/.local/bin' which is not on PATH."
+Modify the path variable as before if running interactively:
+```bash
+export PATH=$PATH:/u/home/j/julianne/.local/bin
+```
+

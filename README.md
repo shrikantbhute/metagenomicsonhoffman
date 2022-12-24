@@ -215,3 +215,8 @@ HUMAnN configuration file updated: database_folders : protein = /u/scratch/j/jul
 (humann) -bash-4.2$ humann_config --update database_folders utility_mapping /u/scratch/j/julianne/humann_databases/utility_mapping/
 HUMAnN configuration file updated: database_folders : utility_mapping = /u/scratch/j/julianne/humann_databases/utility_mapping/
 ```
+
+Move all files from various subdirectories to a different directory:
+```bash
+find ./ -type f -print0 | xargs -0 mv -t ../depressionstudy/
+```

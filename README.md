@@ -133,10 +133,10 @@ conda env create -f kneaddata
 conda activate kneaddata
 ```
 
-By default, installations are made in the $HOME directory. This is recommended: 
+By default, installations are made in the $HOME directory. This is recommended. Anecdotally, I found kneaddata 0.12.0 does not work well for paired samples, instead thinking that all reads are unmatched between R1 and R2. Workaround solutions proposing to modify read headers by removing the space also did not resolve the issue.
 
 ```bash
-pip install kneaddata
+pip install kneaddata==0.10.0
 ```
 
 Alternatively, if the $HOME directory is full, download to SCRATCH. however, you will need to modify $PATH everytime you reestablish a new connection via ssh or you can permanently change $PATH via direct modification of a config file `.bash_profile` if you're using bash. if you're submitting job via `qsub` (versus running interactively) you probably want to modify `.bash_profile`, `.bashrc`, and `.condarc`.

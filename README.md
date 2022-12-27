@@ -222,7 +222,12 @@ HUMAnN configuration file updated: database_folders : protein = /u/scratch/j/jul
 HUMAnN configuration file updated: database_folders : utility_mapping = /u/scratch/j/julianne/humann_databases/utility_mapping/
 ```
 
-Move all files from various subdirectories to a different directory:
+Run Humann on concatenated KneadData outputs: 
 ```bash
-find ./ -type f -print0 | xargs -0 mv -t ../depressionstudy/
+for file in *; do qsub ../../run_humann.sh $file; done
+```
+
+Move all files from various subdirectories to current directory:
+```bash
+find ./ -type f -print0 | xargs -0 mv -t ./
 ```

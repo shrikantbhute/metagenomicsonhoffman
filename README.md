@@ -188,6 +188,12 @@ Move all kneaddata outputs to a new folders and remove all the intermediate file
 ```bash
 mv *kneaddata* kneaddata_outputs
 find . -type f -not -name '*data_paired_*' -print0 | xargs -0 -I {} rm -v {}
+```
+
+Concatenate paired kneaddata outputs into one fastq file for running Humann:
+```bash
+for f in *R1_001_kneaddata_paired_1.fastq; do name=$(basename $f R1_001_kneaddata_paired_1.fastq); cat ${name}R1_001_kneaddata_paired_1.fastq ${name}R1_001_kneaddata_paired_2.fastq > merged_${name}_kneaddata_paired.fastq; done
+```
 ---------
 ## Running Humann
 Update to Metaphlan 4.0 if not already running 4.0 (check with `--version` parameter). This newer version should prevent getting the error "Warning: Unable to download https://www.dropbox.com/sh/7qze7m7g9fe2xjg/AAA4XDP85WHon_eHvztxkamTa/file_list.txt?dl=1. UnboundLocalError: local variable 'ls_f' referenced before assignment" and having to resort to finding workaround ways to download the file.

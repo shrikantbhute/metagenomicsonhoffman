@@ -4,6 +4,10 @@ Jacobs Lab: Run Metaphlann4 and Humann on the UCLA Supercomputer Hoffman2.
 This is applicable to anyone trying to scale metagenomic data preprocessing for many samples on a supercomputer. 
 At UCLA, our HPC job scheduling system is the Univa Grid Engine, derived from Sun Grid Engine. Therefore, these commands carry over to other UGE job scheduling systems. 
 
+Software versions used in this tutorial (Dec 2022)
+- Metaphlan v4.0 
+- Humann v3.6
+- KneadData v0.10.0
 
 ---
 ## Basic supercomputer instructions for novices

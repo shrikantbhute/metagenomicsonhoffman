@@ -8,7 +8,7 @@
 #$ -l h_rt=24:00:00,h_data=4G
 ## Modify the parallel environment
 ## and the number of cores as needed:
-#$ -pe shared 10
+#$ -pe shared 20
 # Email address to notify
 #$ -M jcyang1617@g.ucla.edu
 # Notify when
@@ -23,11 +23,11 @@ echo " "
 . /u/local/Modules/default/init/modules.sh
 ## Edit the line below as needed:
 module load anaconda3
-conda activate biobakery3
+conda activate humann
 
 ## substitute the command to run your code
 ## in the two lines below:
-metaphlan $1,$2 --bowtie2out ${1%.*}_metagenome.bowtie2.bz2 --nproc 10 --input_type fastq -o ${1%.*}_profiled_metagenome.txt --bowtie2db metaphlan_database --index mpa_vJan21_CHOCOPhlAnSGB_202103
+metaphlan $1,$2 --bowtie2out ${1%.*}_metagenome.bowtie2.bz2 --nproc 20 --input_type fastq -o ${1%.*}_profiled_metagenome.txt --bowtie2db /u/scratch/j/julianne/metaphlan_database --index mpa_vJan21_CHOCOPhlAnSGB_202103 
 
 # echo job info on joblog:
 echo "Job $JOB_ID ended on:   " `hostname -s`

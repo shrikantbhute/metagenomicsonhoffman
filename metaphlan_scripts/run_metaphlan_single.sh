@@ -23,7 +23,7 @@ echo " "
 . /u/local/Modules/default/init/modules.sh
 ## Edit the line below as needed:
 module load anaconda3
-conda activate biobakery3
+conda activate humann
 
 ## substitute the command to run your code
 ## in the two lines below:

@@ -48,6 +48,10 @@ To delete all jobs in queue:
 ```bash
 qdel -u julianne
 ```
+To transfer all files in a directory to your $SCRATCH directory in Hoffman:
+```bash
+scp -r .\JJ_pool1_S-23-0073_GAP506-380518546\ julianne@hoffman2.idre.ucla.edu:/u/scratch/j/julianne
+```
 ---
 ## Setting up the Environment for Metaphlann4 and Humann
 

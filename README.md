@@ -84,7 +84,7 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 conda config --add channels biobakery
 ```
-Install HUMAnN 3.0 software with demo databases and Metaphlan 3.0. Also update all humann databases. Note path/to/database should be replaced with the directory to which you want to download databases.
+Install HUMAnN 3.0 software with demo databases and Metaphlan 3.0. Also update all humann databases. Note path/to/database should be replaced with the directory to which you want to download databases. If ```conda install humann -c biobakery``` takes too long, it's a good idea to try ```pip install humann --no-binary :all:``` as suggested by Huttenhower Lab.
 
 ```bash
     conda install humann -c biobakery

@@ -131,6 +131,11 @@ To submit a job for each pair of samples:
 
 ```
 
+To merge metaphlan outputs (from Huttenhower Lab): 
+```bash
+merge_metaphlan_tables.py metaphlan_output*.txt > output/merged_abundance_table.txt
+```
+
 --------------------------------------
 ## Installing and running KneadData 
 

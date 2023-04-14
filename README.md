@@ -142,7 +142,7 @@ merge_metaphlan_tables.py metaphlan_output*.txt > output/merged_abundance_table.
 
 Anecdotally, I found that installation of package dependencies of kneaddata had a lot of issues, so I think it is safer to create a new environment separate from biobakery3 purely for kneaddata. 
 ```bash 
-conda env create -f kneaddata
+conda create --name kneaddata python=3.7
 conda activate kneaddata
 ```
 

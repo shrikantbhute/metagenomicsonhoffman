@@ -172,9 +172,9 @@ nano config.py
 ```
 - "Unable to find trimmomatic. Please provide the full path"
 ![image](https://user-images.githubusercontent.com/62775127/208792482-c6febee7-808f-4e1e-acd7-a95654b940e2.png)
-You will merely need to locate the filepath to trimmomatic, which is somewhere in $HOME/.conda/pkgs:
+You will merely need to locate the filepath to trimmomatic, which is somewhere in $HOME:
 ```bash
-/u/home/j/julianne/.conda/pkgs/trimmomatic-0.39-hdfd78af_2/share/trimmomatic-0.39-2/
+find $HOME -name trimmomatic
 ```
 
 Now, install the reference genomes that you will need for kneaddata (below is just for human genome):

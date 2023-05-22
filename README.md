@@ -239,8 +239,14 @@ Run Humann on concatenated KneadData outputs:
 ```bash
 for file in *; do qsub ../../run_humann.sh $file; done
 ```
+---------
+## Helpful Commands
 
 Move all files from various subdirectories to current directory:
 ```bash
 find ./ -type f -print0 | xargs -0 mv -t ./
+```
+If jobs show "eqw" for some files and you need to move everything alphabetically after some search term:
+```bash
+for f in *R1_001_kneaddata_paired_1.fastq; do name=$(basename $f R1_001_kneaddata_paired_1.fastq); cat ${name}R1_001_kneaddata_paired_1.fastq ${name}R1_001_kneaddata_paired_2.fastq > merged_${name}_kneaddata_paired.fastq; done
 ```

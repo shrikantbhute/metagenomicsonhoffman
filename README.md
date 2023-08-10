@@ -246,7 +246,27 @@ Move all files from various subdirectories to current directory:
 ```bash
 find ./ -type f -print0 | xargs -0 mv -t ./
 ```
-If jobs show "eqw" for some files and you need to move everything alphabetically after some search term:
+If jobs show "eqw" for some files and you need to move files starting alphabetically with some letter:
 ```bash
-for f in *R1_001_kneaddata_paired_1.fastq; do name=$(basename $f R1_001_kneaddata_paired_1.fastq); cat ${name}R1_001_kneaddata_paired_1.fastq ${name}R1_001_kneaddata_paired_2.fastq > merged_${name}_kneaddata_paired.fastq; done
+mv [XYZ]*.fastq.gz new_directory/
+```
+Move files containing filenames in txt file to a new folder
+```bash
+while IFS= read -r partial_filename; do mv *"$partial_filename"* rerun_humann; done < $SCRATCH/2023_001/rerun_humann.txt
+```
+Remove duplicates:
+```bash
+sort -u your_input_file.txt > no_duplicates_output_file.txt
+```
+Find items in txt file 2 that are not in txt file 1
+```bash
+grep -F -x -v -f file1.txt file2.txt > unique_filenames.txt
+```
+Filter out filenames containing R2
+```bash
+grep -v "_R2" filenames.txt > filtered_filenames.txt
+```
+Use cat and cut to modify filenames rapidly:
+```bash
+cat filenames.txt | cut -d'_' -f4-6 
 ```

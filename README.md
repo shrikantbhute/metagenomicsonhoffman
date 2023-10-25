@@ -279,3 +279,10 @@ Use cat and cut to modify filenames rapidly:
 ```bash
 cat filenames.txt | cut -d'_' -f4-6 
 ```
+
+Find all gene families, pathway abundance, and pathway coverage files in humann folder and copy them in a separate folders
+```
+find . -type - -name "*gene*" -exec cp {} genefamilies/ \;
+find . -type f -name "*patha*" -exec cp {} pathabndance/ \;
+find . -type f -name "*pathc*" -exec cp {} pathcoverage/ \;
+```

@@ -255,6 +255,10 @@ Move all files from various subdirectories to current directory:
 ```bash
 find ./ -type f -print0 | xargs -0 mv -t ./
 ```
+Find and delete empty directories from the current directory.
+```
+find . -empty -type d -delete
+```
 If jobs show "eqw" for some files and you need to move files starting alphabetically with some letter:
 ```bash
 mv [XYZ]*.fastq.gz new_directory/

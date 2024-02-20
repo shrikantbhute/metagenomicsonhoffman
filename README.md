@@ -287,6 +287,26 @@ cat filenames.txt | cut -d'_' -f4-6
 Find all gene families, pathway abundance, and pathway coverage files in humann folder and copy them in a separate folders
 ```
 find . -type f -name "*gene*" -exec cp {} genefamilies/ \;
-find . -type f -name "*patha*" -exec cp {} pathabndance/ \;
+find . -type f -name "*patha*" -exec cp {} pathabundance/ \;
 find . -type f -name "*pathc*" -exec cp {} pathcoverage/ \;
+```
+
+Remove everything before the first '_' from the file names
+
+```
+for file in *_*; do
+    newname=$(echo $file | cut -d'_' -f2-)
+    extension="${file##*.}"
+    mv "$file" "$newname.$extension"
+done
+```
+
+Remove everything after the second '_' from the file name
+
+```
+for file in *_*; do
+    newname=$(echo $file | cut -d'_' -f1-2)
+    extension="${file##*.}"
+    mv "$file" "$newname.$extension"
+done
 ```

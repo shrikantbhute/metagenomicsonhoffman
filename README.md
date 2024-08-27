@@ -291,6 +291,15 @@ find . -type f -name "*patha*" -exec cp {} pathabundance/ \;
 find . -type f -name "*pathc*" -exec cp {} pathcoverage/ \;
 ```
 
+For loop to clean-up the file names. Please change pathcoverage to genefamilies or pathabundance depending on the files you want to rename.
+```
+for file in merged_*_S*_L005__kneaddata_paired_pathcoverage.tsv; do
+    newname=$(echo "$file" | sed 's/merged_//; s/_S[0-9]*_L005__kneaddata_paired_pathcoverage/_pathcoverage/')
+    mv "$file" "$newname"
+done
+
+```
+
 Remove everything before the first '_' from the file names
 
 ```

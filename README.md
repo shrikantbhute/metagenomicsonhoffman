@@ -319,3 +319,8 @@ for file in *_*; do
     mv "$file" "$newname.$extension"
 done
 ```
+List joblog files that have error. Useful to find the files that failed at metaphlan or humann analysis step.
+
+```
+find . -name "joblog.*" -type f -exec grep -i -l "error" {} +
+```

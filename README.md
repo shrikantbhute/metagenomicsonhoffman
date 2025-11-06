@@ -291,6 +291,12 @@ find . -type f -name "*patha*" -exec cp {} pathabundance/ \;
 find . -type f -name "*pathc*" -exec cp {} pathcoverage/ \;
 ```
 
+Get unique sample IDs from the fastq.gz files
+```
+ls *.fastq.gz | sed -E 's/_R[12]_.*//g' | sort -u
+```
+
+
 For loop to clean-up the file names. Please change pathcoverage to genefamilies or pathabundance depending on the files you want to rename.
 ```
 for file in merged_*_S*_L005__kneaddata_paired_pathcoverage.tsv; do

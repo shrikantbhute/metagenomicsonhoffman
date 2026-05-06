@@ -337,3 +337,8 @@ While loop to run samples from the file
 while IFS= read -r line; do   f="$line";   name=$(basename "$f" _R1_001.fastq.gz);    echo "f=[$f]";   echo "name=[$name]";   echo "R1=[${name}_R1_001.fastq.gz]";   echo "R2=[${name}_R2_001.fastq.gz]";    qsub ../../../humann_scripts/run_kneaddata_human.sh     "${name}_R1_001.fastq.gz" "${name}_R2_001.fastq.gz"; done < test_ab
 
 ```
+
+Use this Basespace command to save the sample IDs for a particular project
+```
+bs biosample list --project-id 483769303 --terse > sample_list_XA184.txt
+```
